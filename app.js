@@ -35,7 +35,7 @@ app.get("/", async (req, res) => {
         if (err) console.log(err)
 
         // send records as a response
-        res.send(recordset);
+        res.send("shit");
         
     });
 });
