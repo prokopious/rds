@@ -5,24 +5,25 @@ const sql = require("mssql")
 require("dotenv").config()
 
 const PORT = process.env.PORT
-
+app.use(cors())
 app.get("/", async (req, res) => {
   const config = {
     user: "admin",
     password: process.env.PWD_D,
-    server: process.env.NAME_D, 
+    server: process.env.NAME_D,
     database: "liberty",
-    port: process.env.PORT
+    port: process.env.PORT,
   }
-res.send(JSON.stringify(config))
-  // try {
-  //   await sql.connect(config)
-  //   const result = await sql.query`select * from Persons`
-  //   console.log("shit")
-  //   res.send("Great!")
-  // } catch (err) {
-  //   console.log("this sucks")
-  // }
+
+  try {
+    await sql.connect(config)
+    console.log("shit")
+    const result = await sql.query`select * from Persons`
+
+    res.send("Great!")
+  } catch (err) {
+    console.log("this sucks")
+  }
 })
 
 app.listen(PORT, () => {
