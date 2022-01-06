@@ -28,11 +28,9 @@ app.get("/", function (req, res) {
       if (err) res.send(err)
 
       // send records as a response
-      res.send(recordset)
+      res.send("shit")
     })
   })
 })
 
-var server = app.listen(5000, function () {
-  console.log("Server is running..")
-})
+
