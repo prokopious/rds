@@ -1,29 +1,44 @@
 const express = require("express")
 const app = express()
 var cors = require("cors")
-const sql = require("mssql")
 require("dotenv").config()
 
 const PORT = process.env.PORT || 1433
 app.use(cors())
 app.get("/", async (req, res) => {
+  var sql = require("mssql");
   const config = {
     user: "admin",
     password: process.env.PWD_D,
     server: process.env.NAME_D,
-    database: "liberty",
-    port: 1433,
+    synchronize: true,
+   extra: { 
+    trustServerCertificate: false,
+    Encrypt: true,
+    IntegratedSecurity: true,
+    
+    
+    },
+    database: "liberty"
   }
 
-  try {
-    await sql.connect(config)
-    console.log("shit")
-    const result = await sql.query`select * from Persons`
+  sql.connect(config, function (err) {
+    
+    if (err) console.log(err);
 
-    res.send("Great!")
-  } catch (err) {
-    console.log("this sucks")
-  }
+    // create Request object
+    var request = new sql.Request();
+       
+    // query to the database and get the records
+    request.query('select * from Persons', function (err, recordset) {
+        
+        if (err) console.log(err)
+
+        // send records as a response
+        res.send(recordset);
+        
+    });
+});
 })
 
 app.listen(PORT, () => {
