@@ -3,7 +3,7 @@ const app = express()
 var cors = require("cors")
 const sql = require("mssql")
 require("dotenv").config()
-const PORT = process.env.PORT || 1433
+const PORT = process.env.PORT
 
 app.get("/", async (req, res) => {
   const config = {
@@ -11,7 +11,7 @@ app.get("/", async (req, res) => {
     password: process.env.PWD_D,
     server: process.env.NAME_D, 
     database: "liberty",
-    port: 1433
+    port: process.env.PORT
   }
 
   try {
