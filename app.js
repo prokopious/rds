@@ -12,7 +12,7 @@ app.get("/", async (req, res) => {
     password: process.env.PWD_D,
     server: process.env.NAME_D,
     database: "liberty",
-    port: process.env.PORT,
+    port: 1433,
   }
 
   try {
