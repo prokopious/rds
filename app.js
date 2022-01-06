@@ -27,5 +27,6 @@ app.get("/", async (req, res) => {
 })
 
 app.listen(PORT, () => {
-  console.log(`Our app is running on port ${PORT}`)
+  var port = server.address().port;
+  console.log(`Our app is running on port ${port}`)
 })
