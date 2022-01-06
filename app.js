@@ -3,7 +3,7 @@ const app = express()
 var cors = require("cors")
 require("dotenv").config()
 
-const PORT = process.env.PORT || 1433
+const PORT = process.env.PORT || 3000
 app.use(cors())
 app.get("/", (req, res) => {
   var sql = require("mssql")
@@ -11,18 +11,21 @@ app.get("/", (req, res) => {
     user: "admin",
     password: process.env.PWD_D,
     server: process.env.NAME_D,
-    database: 'liberty',
+    database: "liberty"
   }
 
   sql.connect(config, function (err) {
-    if (err) console.log(err)
-
+    if (err) {
+      console.log("shitty1")
+      console.log(err)
+    }
     // create Request object
     var request = new sql.Request()
 
     // query to the database and get the records
-    request.query('select * from Persons', function (err, recordset) {
+    request.query("select * from Persons", function (err, recordset) {
       if (err) {
+        console.log("shitty2")
         console.log(err)
       } else {
         console.log(recor)
