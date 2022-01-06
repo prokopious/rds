@@ -1,3 +1,0 @@
-DB_USER = admin
-DB_PWD = Khazarkhan1!
-DB_NAME = jdbc:sqlserver://database-1.cz8tqqetywxp.us-east-1.rds.amazonaws.com
