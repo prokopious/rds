@@ -4,7 +4,7 @@ var cors = require("cors")
 const sql = require("mssql")
 require("dotenv").config()
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 1433
 app.use(cors())
 app.get("/", async (req, res) => {
   const config = {
@@ -27,6 +27,5 @@ app.get("/", async (req, res) => {
 })
 
 app.listen(PORT, () => {
-  var port = server.address().port;
-  console.log(`Our app is running on port ${port}`)
-})
+  console.log(`Our app is running on port ${ PORT }`);
+});
