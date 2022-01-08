@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
     }
     var request = new sql.Request()
     request.query(
-      `select * from Persons LEFT JOIN (Select TOP 1 * from Donation order by amount) as d ON d.person_id = Persons.person_id LEFT JOIN (Select TOP 1 * from PhoneNumber where phone_type = 'home' OR phone_type = 'work' order by phone_type) as n ON Persons.person_id = n.person_id `,
+      `select * from Persons select * from Donation`,
       function (err, set) {
         if (err) {
           console.log(err)
