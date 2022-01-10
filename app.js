@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
     }
     var request = new sql.Request()
     request.query(
-      `select * from Persons select * from Donation`,
+      `select * from Persons select * from Donation select * from PhoneNumber select * from Address`,
       function (err, set) {
         if (err) {
           console.log(err)
